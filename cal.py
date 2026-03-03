@@ -1,25 +1,54 @@
 # Simple Calculator Program
+class Calculator:
+    # constructor
+    def __init__(self, first_number, operation, second_number):
+        self.first_number = first_number
+        self.operation = operation
+        self.second_number = second_number
 
-first_number = float(input("Enter the first number: "))
-operation = input("Enter the operation (+, -, *, /): ")
-second_number = float(input("Enter the second number: "))
+    def add(self):
+        return self.first_number + self.second_number
 
-if operation == "+":
-    result = first_number + second_number
+    def subtract(self):
+        return self.first_number - self.second_number
 
-elif operation == "-":
-    result = first_number - second_number
+    def multiply(self):
+        return self.first_number * self.second_number
 
-elif operation == "*":
-    result = first_number * second_number
+    def divide(self):
+        if self.second_number == 0:
+            return "Error: Division by zero is not allowed."
+        return self.first_number / self.second_number
 
-elif operation == "/":
-    if second_number != 0:
-        result = first_number / second_number
-    else:
-        result = "Error: Division by zero is not allowed."
 
-else:
-    result = "Error: Invalid operation."
+def main():
+    while True:
+        print("\nSimple Calculator")
+        print("Enter 'q' in operation to quit.")
+        first_number = float(input("Enter the first number: "))
+        operation = input("Enter the operation (+, -, *, /): ")
+        second_number = float(input("Enter the second number: "))
 
-print("Result:", result)
+        calculator = Calculator(first_number, operation, second_number)
+
+        if calculator.operation == "+":
+            result = calculator.add()
+        elif calculator.operation == '-':
+            result = calculator.subtract()
+        elif calculator.operation == '*':
+            result = calculator.multiply()
+
+        elif calculator.operation == '/':
+            result = calculator.divide()
+
+        elif calculator.operation.lower() == 'q':
+            print("Exiting the calculator. Goodbye!")
+            exit()
+        else:
+            result = "Error: Invalid operation."
+
+        print(f"Result:", result)
+
+
+if __name__ == "__main__":
+    main()
